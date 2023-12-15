@@ -103,7 +103,6 @@ namespace StarterAssets
         private int _animIDSpeed;
         private int _animIDGrounded;
         private int _animIDJump;
-        private int _animIDCrouch; // added to assign crouch function
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
@@ -166,7 +165,6 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
-            Crouch();
             GroundedCheck();
             Move();
         }
@@ -181,7 +179,6 @@ namespace StarterAssets
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDJump = Animator.StringToHash("Jump");
-            _animIDCrouch = Animator.StringToHash("Crouch"); // added to assign crouch
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
@@ -306,7 +303,6 @@ namespace StarterAssets
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDCrouch, false); // NEW
                     _animator.SetBool(_animIDFreeFall, false);
                 }
 
@@ -328,7 +324,6 @@ namespace StarterAssets
                         _animator.SetBool(_animIDJump, true);
                     }
                 }
-
 
                 // jump timeout
                 if (_jumpTimeoutDelta >= 0.0f)
@@ -363,34 +358,6 @@ namespace StarterAssets
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
-            }
-        }
-
-        private void Crouch()
-        {
-            if (Grounded)
-            {
-                // reset the fall timeout timer
-                //_fallTimeoutDelta = FallTimeout;
-
-                // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDCrouch, false); // NEW
-                }
-
-                // NEW CROUCH
-                if (_input.crouch)  //&& _jumpTimeoutDelta <= 0.0f
-                {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    //_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDCrouch, true);
-                    }
-                }
             }
         }
 

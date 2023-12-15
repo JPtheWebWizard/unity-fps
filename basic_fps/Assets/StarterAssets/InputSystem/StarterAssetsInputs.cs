@@ -14,11 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 <<<<<<< Updated upstream
 		public bool aim;
-<<<<<<< Updated upstream
 =======
->>>>>>> Stashed changes
-=======
-		public bool crouch;
 >>>>>>> Stashed changes
 
 		[Header("Movement Settings")]
@@ -47,11 +43,6 @@ namespace StarterAssets
 			JumpInput(value.isPressed);
 		}
 
-		public void OnCrouch(InputValue value) //NEW
-		{
-			CrouchInput(value.isPressed);
-		}
-
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
@@ -73,9 +64,9 @@ namespace StarterAssets
 >>>>>>> Stashed changes
 		{
 			move = newMoveDirection;
-		}
+		} 
 
-        public void LookInput(Vector2 newLookDirection)
+		public void LookInput(Vector2 newLookDirection)
 		{
 			look = newLookDirection;
 		}
@@ -107,12 +98,7 @@ namespace StarterAssets
 			SetCursorState(cursorLocked);
 		}
 
-        public void CrouchInput(bool newCrouchState)
-        {
-            crouch = newCrouchState;
-        }
-
-        private void SetCursorState(bool newState)
+		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
