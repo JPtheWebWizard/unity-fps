@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 ﻿using UnityEngine;
+=======
+﻿ using UnityEngine;
+>>>>>>> Stashed changes
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -27,7 +31,11 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
+<<<<<<< Updated upstream
         public float Sensitivity = 1f;
+=======
+
+>>>>>>> Stashed changes
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
@@ -198,8 +206,13 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
+<<<<<<< Updated upstream
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * Sensitivity;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * Sensitivity;
+=======
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+>>>>>>> Stashed changes
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -369,12 +382,15 @@ namespace StarterAssets
                 GroundedRadius);
         }
 
+<<<<<<< Updated upstream
         public void SetSensitivity(float newSensitivity)
         {
             Sensitivity = newSensitivity;
         }
 
 
+=======
+>>>>>>> Stashed changes
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
