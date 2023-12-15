@@ -331,7 +331,7 @@ namespace StarterAssets
                 else
                 {
                     // update animator if using character
-                    if (_hasAnimator)
+                    if (_hasAnimator && _jumpTimeoutDelta <= 0.0f)
                     {
                         _animator.SetBool(_animIDFreeFall, true);
                     }
@@ -348,6 +348,48 @@ namespace StarterAssets
             }
         }
 
+<<<<<<< Updated upstream
+=======
+        private void Crouch()
+        {
+            if (Grounded)
+            {
+                // reset the fall timeout timer
+                //_fallTimeoutDelta = FallTimeout;
+
+                // update animator if using character
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDCrouch, false); // NEW
+                }
+
+                // NEW CROUCH
+                if (_input.crouch && _CrouchTimeoutDelta <= 0.0f)  //&& _jumpTimeoutDelta <= 0.0f
+                {
+                    // the square root of H * -2 * G = how much velocity needed to reach desired height
+                    //_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                    // update animator if using character
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDCrouch, true);
+                    }
+                }
+
+                // jump timeout
+                if (_CrouchTimeoutDelta >= 0.0f)
+                {
+                    _CrouchTimeoutDelta -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                // reset the jump timeout timer
+                _CrouchTimeoutDelta = CrouchTimeout;
+            }
+        }
+
+>>>>>>> Stashed changes
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
